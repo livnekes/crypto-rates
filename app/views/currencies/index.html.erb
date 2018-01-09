@@ -1,8 +1,9 @@
 <% @coin_values.each do |name, dallar_value| %>
-	<h2><%= name %>: <%= dallar_value %> USD.</h2>
+    <h2 style="text-align: center;"><%= name %>: <%= dallar_value %> USD.</h2>
 <% end %>
-
-<canvas id="myChart"></canvas>
+<div style="width: 75%; margin: 0 auto;">
+    <canvas id="myChart"></canvas>
+</div>
 
 <script type="text/javascript">
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -13,7 +14,8 @@ var chart = new Chart(ctx, {
         datasets: [{
             label: "Bitcoin to USD",
             fill: false,
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(54, 162, 235)',
+            backgroundColor: 'rgb(54, 162, 235)',
             data: <%= @dollar_array %>,
         }]
     },
