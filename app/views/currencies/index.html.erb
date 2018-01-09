@@ -1,5 +1,5 @@
 <% @coin_values.each do |name, dallar_value| %>
-	<p><%= name %>: <%= dallar_value %> USD.</p>
+	<h2><%= name %>: <%= dallar_value %> USD.</h2>
 <% end %>
 
 <canvas id="myChart"></canvas>
@@ -7,10 +7,7 @@
 <script type="text/javascript">
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
-    // The type of chart we want to create
     type: 'line',
-
-    // The data for our dataset
     data: {
         labels: <%= raw @dates %>,
         datasets: [{
@@ -20,8 +17,6 @@ var chart = new Chart(ctx, {
             data: <%= @dollar_array %>,
         }]
     },
-
-    // Configuration options go here
     options: {}
 });
 </script>
