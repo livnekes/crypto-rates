@@ -1,7 +1,8 @@
 <% @coin_values.each do |name, dallar_value| %>
     <h2 class="text-center">
-    <%= link_to name, controller: "currencies", action: "show", id: name %>: 
-    <%= dallar_value %> USD.
+        <%= link_to name, controller: "currencies", action: "show", id: name %>: 
+        <%= dallar_value %> USD
+        <%= image_tag(Coin.get_img_url(name), size: "16x16", alt: "Currency Logo") %>
     </h2>
 <% end %>
 <div class="chart center">

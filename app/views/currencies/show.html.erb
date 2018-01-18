@@ -1,6 +1,7 @@
-<h2 class="text-center">
-    <%= @coin_name %>: <%= @coin_value %> USD.
-</h2>
+<h1 class="text-center">
+    <%= @coin_name %>: <%= @coin_value %> USD
+    <%= image_tag(Coin.get_img_url(@coin_name), size: "25x25", alt: "Currency Logo") %>
+</h1>
 <div class="chart center">
     <canvas id="myChart"></canvas>
 </div>

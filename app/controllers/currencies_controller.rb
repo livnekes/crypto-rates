@@ -1,8 +1,7 @@
 class CurrenciesController < ApplicationController
-	COIN_NAMES = %w(BTC LTC ETH BCH XRP XVG TRX ADA XLM)
 	def index
-		response = Cryptocompare::Price.find(COIN_NAMES, 'USD')
-		render json: 'Server Error' unless response
+		response = Cryptocompare::Price.find(Coin.names, 'USD')
+		render json: 'Server Error' if response['Error']
 
 		@coin_values = get_coin_values(response)
 
@@ -14,10 +13,13 @@ class CurrenciesController < ApplicationController
 
 	def show
 		@coin_name = params[:id].upcase
-		render json: 'Server Error' unless @coin_name.in?(COIN_NAMES)
+		render json: 'Server Error' unless @coin_name.in?(Coin.names)
 		response = Cryptocompare::Price.find(@coin_name, 'USD')
+		render json: 'Server Error' if response['Error']
 
 		@coin_value = response[@coin_name]['USD']
+
+		@curr_logo_url = Coin.get_img_url(@coin_name)
 
 		response = Cryptocompare::HistoDay.find(@coin_name, 'USD')
 
