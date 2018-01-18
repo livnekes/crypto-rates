@@ -1,12 +1,10 @@
-<% @coin_values.each do |name, dallar_value| %>
-    <h2 class="text-center">
-    <%= link_to name, controller: "currencies", action: "show", id: name %>: 
-    <%= dallar_value %> USD.
-    </h2>
-<% end %>
+<h2 class="text-center">
+    <%= @coin_name %>: <%= @coin_value %> USD.
+</h2>
 <div class="chart center">
     <canvas id="myChart"></canvas>
 </div>
+<button class="button blue" onclick="window.history.back();">Go Back</button>
 
 <script type="text/javascript">
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -15,7 +13,7 @@ var chart = new Chart(ctx, {
     data: {
         labels: <%= raw @dates %>,
         datasets: [{
-            label: "Bitcoin to USD",
+            label: "<%= @coin_name %> to USD",
             fill: false,
             borderColor: 'rgb(54, 162, 235)',
             backgroundColor: 'rgb(54, 162, 235)',
